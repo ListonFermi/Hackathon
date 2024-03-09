@@ -5,4 +5,3 @@ const userController = require("../controller/userController.js");
 
 
 
-userRoutes.get("/", userController.userPage);
