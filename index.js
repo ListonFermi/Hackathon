@@ -14,13 +14,15 @@ dotenv.config()
 //Database connection
 connectDB()
 
-const port = process.env.PORT || 3000;
+app.set("view engine","ejs")
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.use(morgan("dev"));
 app.use(nocache());
 
 app.use(userRoutes);
 
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`server running in port ${port}`);
 });

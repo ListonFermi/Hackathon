@@ -1,9 +1,9 @@
 const userPage = async (req, res) => {
- 
-
-  res.render("");
+  res.render("home");
 };
 
+const userLogin = (req,res)=>{
+  res.render("loginAndSignup")
+}
 
-
-module.exports ={ userPage}
+module.exports = { userPage,userLogin };
