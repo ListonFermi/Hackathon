@@ -21,6 +21,7 @@ app.use(morgan("dev"));
 app.use(nocache());
 
 app.use(userRoutes);
+app.use("/admin",adminRoutes)
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
