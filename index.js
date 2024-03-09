@@ -10,5 +10,6 @@ const adminRoutes = require("./router/adminRoutes.js");
 app.use(morgan('dev'))
 
 
+app.use(userRoutes);
 
 
