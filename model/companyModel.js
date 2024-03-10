@@ -4,7 +4,7 @@ const companySchema = new mongoose.Schema({
   companyName: { type: String, required: true },
   maleCount: { type: Number, required: true } ,
   femaleCount: { type: Number, required: true },
-  location: { type: String, enums: [ 'India', 'Worldwide' ] },
+  location: { type: String, enums: [ 'India', 'Worldwide'] },
   
 });
 
