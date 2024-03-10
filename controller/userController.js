@@ -1,3 +1,4 @@
+const companyCollection = require("../model/companyModel");
 const reviewCollection = require("../model/reviewsModel");
 const userCollection = require("../model/userModel");
 const bcrypt = require("bcryptjs");
@@ -6,7 +7,8 @@ module.exports = {
   homePage: async (req, res) => {
     try {
       const userData = req.session?.currentUser;
-      res.render("userPages/home", { userData });
+      const companiesData= await companyCollection.find()
+      res.render("userPages/home", { userData, companiesData });
     } catch (error) {
       console.log(error);
     }

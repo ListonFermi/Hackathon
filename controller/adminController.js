@@ -3,7 +3,11 @@ const companyCollection = require("../model/companyModel");
 module.exports = {
   adminLogin: async (req, res) => {
     try {
-      res.render("adminPages/loginPage");
+      if(req.session?.admin){
+        res.redirect('/admin/dashboard')
+      }else{
+        res.render("adminPages/loginPage");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +38,8 @@ module.exports = {
   },
   companiesDashboard: async (req, res) => {
     try {
-      res.render("adminPages/companiesDashboard");
+      const companiesData= await companyCollection.find()
+      res.render("adminPages/companiesDashboard",{companiesData});
     } catch (error) {
       console.log(error);
     }
