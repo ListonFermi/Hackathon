@@ -1,417 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link
-      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-      rel="stylesheet"
-      id="bootstrap-css"
-    />
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  </head>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="panel panel-login">
-            <div class="panel-heading">
-              <div class="row">
-                <div class="col-xs-6">
-                  <a href="#" class="active" id="login-form-link">Login</a>
-                </div>
-                <div class="col-xs-6">
-                  <a href="#" id="register-form-link">Register</a>
-                </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-login">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-6">
+                <a href="#" class="active" id="login-form-link">Login</a>
               </div>
-              <hr />
+              <div class="col-xs-6">
+                <a href="#" id="register-form-link">Register</a>
+              </div>
             </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-lg-12">
-                  <form id="login-form" style="display: block">
-                    <div class="form-group">
-                      <input
-                        type="email"
-                        name="emailLogin"
-                        id="emailLogin"
-                        tabindex="1"
-                        class="form-control"
-                        placeholder="Email"
-                        value=""
-                        required
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="password"
-                        name="passwordLogin"
-                        id="passwordLogin"
-                        tabindex="2"
-                        class="form-control"
-                        placeholder="Password"
-                        required
-                        minlength="8"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                          <input
-                            type="submit"
-                            name="login-submit"
-                            id="login-submit"
-                            tabindex="4"
-                            class="form-control btn btn-login"
-                            value="Log In"
-                          />
-                        </div>
+            <hr />
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <form id="login-form" style="display: block">
+                  <div class="form-group">
+                    <input type="email" name="emailLogin" id="emailLogin" tabindex="1" class="form-control"
+                      placeholder="Email" value="" required />
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="passwordLogin" id="passwordLogin" tabindex="2" class="form-control"
+                      placeholder="Password" required minlength="8" />
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit" name="login-submit" id="login-submit" tabindex="4"
+                          class="form-control btn btn-login" value="Log In" />
                       </div>
                     </div>
-                  </form>
-                  <form id="register-form" style="display: none">
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        name="username"
-                        id="username"
-                        tabindex="1"
-                        class="form-control"
-                        placeholder="Username"
-                        value=""
-                        minlength="5"
-                        maxlength="15"
-                        required
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        tabindex="1"
-                        class="form-control"
-                        placeholder="Email Address"
-                        value=""
-                        minlength="8"
-                        required
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="phonenumber"
-                        name="phonenumber"
-                        id="phonenumber"
-                        tabindex="1"
-                        class="form-control"
-                        placeholder="Phone Number"
-                        value=""
-                        minlength="10"
-                        maxlength="10"
-                        required
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        tabindex="2"
-                        class="form-control"
-                        placeholder="Password"
-                        minlength="8"
-                        maxlength="15"
-                        required
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label for="gender">Gender(Only Queens):</label>
-                      <select
-                        name="gender"
-                        id="gender"
-                        class="form-control"
-                        required
-                        disabled
-                      >
-                        <option value="female">Female</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                          <input
-                            type="submit"
-                            id="register-submit"
-                            tabindex="4"
-                            class="form-control btn btn-register"
-                            value="Register Now"
-                          />
-                        </div>
+                  </div>
+                </form>
+                <form id="register-form" style="display: none">
+                  <div class="form-group">
+                    <input type="text" name="username" id="username" tabindex="1" class="form-control"
+                      placeholder="Username" value="" minlength="5" maxlength="15" required />
+                  </div>
+                  <div class="form-group">
+                    <input type="email" name="email" id="email" tabindex="1" class="form-control"
+                      placeholder="Email Address" value="" minlength="8" required />
+                  </div>
+                  <div class="form-group">
+                    <input type="phonenumber" name="phonenumber" id="phonenumber" tabindex="1" class="form-control"
+                      placeholder="Phone Number" value="" minlength="10" maxlength="10" required />
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="jobRole" id="jobRole" tabindex="1" class="form-control"
+                      placeholder="Enter Your Job Role" value="" minlength="3" maxlength="15" required />
+                      <label for="" style="font-weight:25 ;">Type 'Nil' if you are looking for a job</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="company" id="company" tabindex="1" class="form-control"
+                      placeholder="Enter Your Company Name" value="" minlength="3" maxlength="10" required />
+                      <label for="" style="font-weight:25 ;">Type 'Nil' if you are looking for a job</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="password" id="password" tabindex="2" class="form-control"
+                      placeholder="Password" minlength="8" maxlength="15" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="gender">Gender(Only Queens):</label>
+                    <select name="gender" id="gender" class="form-control" required disabled>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit" id="register-submit" tabindex="4" class="form-control btn btn-register"
+                          value="Register Now" />
                       </div>
                     </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script>
-      $(function () {
-        $("#login-form-link").click(function (e) {
-          $("#login-form").delay(100).fadeIn(100);
-          $("#register-form").fadeOut(100);
-          $("#register-form-link").removeClass("active");
-          $(this).addClass("active");
-          e.preventDefault();
-        });
-        $("#register-form-link").click(function (e) {
-          $("#register-form").delay(100).fadeIn(100);
-          $("#login-form").fadeOut(100);
-          $("#login-form-link").removeClass("active");
-          $(this).addClass("active");
-          e.preventDefault();
-        });
+  <script>
+    $(function () {
+      $("#login-form-link").click(function (e) {
+        $("#login-form").delay(100).fadeIn(100);
+        $("#register-form").fadeOut(100);
+        $("#register-form-link").removeClass("active");
+        $(this).addClass("active");
+        e.preventDefault();
       });
-    </script>
-
-    <!-- signup form validation -->
-    <script>
-      $().ready(function () {
-        // validate signup form on keyup and submit
-        $("#register-form").validate({
-          submitHandler: async function (form, event) {
-            event.preventDefault();
-
-            let formData = {
-              username: form.username.value,
-              email: form.email.value,
-              phonenumber: form.phonenumber.value,
-              password: form.password.value,
-              gender: "female",
-            };
-
-            let response = await fetch("/signuplogin/signup", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(formData),
-            });
-            let result = await response.json();
-
-            if (result.success) {
-              console.log("heyy");
-              Swal.fire({
-                icon: "success",
-                title: "Welcome Queen!",
-                showConfirmButton: false,
-                timer: 3500,
-              }).then(() => (window.location.href = "/"));
-            } else if (result.userExists) {
-              Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "User already exists",
-              }).then();
-            }
-          },
-        });
+      $("#register-form-link").click(function (e) {
+        $("#register-form").delay(100).fadeIn(100);
+        $("#login-form").fadeOut(100);
+        $("#login-form-link").removeClass("active");
+        $(this).addClass("active");
+        e.preventDefault();
       });
-    </script>
+    });
+  </script>
 
-    <!-- login form validation -->
-    <script>
-      $().ready(function () {
-        // validate login form on keyup and submit
-        $("#login-form").validate({
-          submitHandler: async function (form, event) {
-            event.preventDefault();
+  <!-- signup form validation -->
+  <script>
+    $().ready(function () {
+      // validate signup form on keyup and submit
+      $("#register-form").validate({
+        submitHandler: async function (form, event) {
+          event.preventDefault();
 
-            let formData = {
-              email: form.emailLogin.value,
-              password: form.passwordLogin.value,
-            };
-            console.log(formData);
+          let formData = {
+            username: form.username.value,
+            email: form.email.value,
+            phonenumber: form.phonenumber.value,
+            jobRole: form.jobRole.value,
+            company: form.company.value,
+            password: form.password.value,
+            gender: "female",
+          };
 
-            let response = await fetch("/signuplogin/login", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(formData),
-            });
-            let result = await response.json();
+          let response = await fetch("/signuplogin/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          });
+          let result = await response.json();
 
-            if (result.success) {
-              Swal.fire({
-                icon: "success",
-                title: "Welcome back Queen!",
-                showConfirmButton: false,
-                timer: 2000,
-              }).then(() => (window.location.href = "/"));
-            } else if (result.userDoesntExist) {
-              Swal.fire({
-                icon: "error",
-                title: "User doesn't exist",
-                text: "Try creating a new account :)",
-              }).then();
-            } else if (result.invalidPassword) {
-              Swal.fire({
-                icon: "error",
-                title: "Invalid credentials",
-                text: "Try entering correct credentials",
-              }).then();
-            }
-          },
-        });
+          if (result.success) {
+            console.log("heyy");
+            Swal.fire({
+              icon: "success",
+              title: "Welcome Queen!",
+              showConfirmButton: false,
+              timer: 3500,
+            }).then(() => (window.location.href = "/"));
+          } else if (result.userExists) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "User already exists",
+            }).then();
+          }
+        },
       });
-    </script>
+    });
+  </script>
 
-    <style>
-      body {
-        background-color: #37517e;
-        min-height: 100vh;
-        min-width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+  <!-- login form validation -->
+  <script>
+    $().ready(function () {
+      // validate login form on keyup and submit
+      $("#login-form").validate({
+        submitHandler: async function (form, event) {
+          event.preventDefault();
 
-      .panel-login {
-        border-color: #ccc;
-        -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
-        -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
-        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
-      }
+          let formData = {
+            email: form.emailLogin.value,
+            password: form.passwordLogin.value,
+          };
+          console.log(formData);
 
-      .panel-login > .panel-heading {
-        color: #00415d;
-        background-color: #fff;
-        border-color: #fff;
-        text-align: center;
-      }
+          let response = await fetch("/signuplogin/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          });
+          let result = await response.json();
 
-      .panel-login > .panel-heading a {
-        text-decoration: none;
-        color: #666;
-        font-weight: bold;
-        font-size: 15px;
-        -webkit-transition: all 0.1s linear;
-        -moz-transition: all 0.1s linear;
-        transition: all 0.1s linear;
-      }
+          if (result.success) {
+            Swal.fire({
+              icon: "success",
+              title: "Welcome back Queen!",
+              showConfirmButton: false,
+              timer: 2000,
+            }).then(() => (window.location.href = "/"));
+          } else if (result.userDoesntExist) {
+            Swal.fire({
+              icon: "error",
+              title: "User doesn't exist",
+              text: "Try creating a new account :)",
+            }).then();
+          } else if (result.invalidPassword) {
+            Swal.fire({
+              icon: "error",
+              title: "Invalid credentials",
+              text: "Try entering correct credentials",
+            }).then();
+          }
+        },
+      });
+    });
+  </script>
 
-      .panel-login > .panel-heading a.active {
-        color: #00415d;
-        font-size: 18px;
-      }
+  <style>
+    body {
+      background-color: #37517e;
+      min-height: 100vh;
+      min-width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-      .panel-login > .panel-heading hr {
-        margin-top: 10px;
-        margin-bottom: 0px;
-        clear: both;
-        border: 0;
-        height: 1px;
-        background-image: -webkit-linear-gradient(
-          left,
+    .panel-login {
+      border-color: #ccc;
+      -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .panel-login>.panel-heading {
+      color: #00415d;
+      background-color: #fff;
+      border-color: #fff;
+      text-align: center;
+    }
+
+    .panel-login>.panel-heading a {
+      text-decoration: none;
+      color: #666;
+      font-weight: bold;
+      font-size: 15px;
+      -webkit-transition: all 0.1s linear;
+      -moz-transition: all 0.1s linear;
+      transition: all 0.1s linear;
+    }
+
+    .panel-login>.panel-heading a.active {
+      color: #00415d;
+      font-size: 18px;
+    }
+
+    .panel-login>.panel-heading hr {
+      margin-top: 10px;
+      margin-bottom: 0px;
+      clear: both;
+      border: 0;
+      height: 1px;
+      background-image: -webkit-linear-gradient(left,
           rgba(0, 0, 0, 0),
           rgba(0, 0, 0, 0.15),
-          rgba(0, 0, 0, 0)
-        );
-        background-image: -moz-linear-gradient(
-          left,
+          rgba(0, 0, 0, 0));
+      background-image: -moz-linear-gradient(left,
           rgba(0, 0, 0, 0),
           rgba(0, 0, 0, 0.15),
-          rgba(0, 0, 0, 0)
-        );
-        background-image: -ms-linear-gradient(
-          left,
+          rgba(0, 0, 0, 0));
+      background-image: -ms-linear-gradient(left,
           rgba(0, 0, 0, 0),
           rgba(0, 0, 0, 0.15),
-          rgba(0, 0, 0, 0)
-        );
-        background-image: -o-linear-gradient(
-          left,
+          rgba(0, 0, 0, 0));
+      background-image: -o-linear-gradient(left,
           rgba(0, 0, 0, 0),
           rgba(0, 0, 0, 0.15),
-          rgba(0, 0, 0, 0)
-        );
-      }
+          rgba(0, 0, 0, 0));
+    }
 
-      .panel-login input[type="text"],
-      .panel-login input[type="email"],
-      .panel-login input[type="password"] {
-        height: 45px;
-        border: 1px solid #ddd;
-        font-size: 16px;
-        -webkit-transition: all 0.1s linear;
-        -moz-transition: all 0.1s linear;
-        transition: all 0.1s linear;
-      }
+    .panel-login input[type="text"],
+    .panel-login input[type="email"],
+    .panel-login input[type="password"] {
+      height: 45px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+      -webkit-transition: all 0.1s linear;
+      -moz-transition: all 0.1s linear;
+      transition: all 0.1s linear;
+    }
 
-      .panel-login input:hover,
-      .panel-login input:focus {
-        outline: none;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-        border-color: #ccc;
-      }
+    .panel-login input:hover,
+    .panel-login input:focus {
+      outline: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      border-color: #ccc;
+    }
 
-      .btn-login {
-        background-color: #37517e;
-        outline: none;
-        color: #fff;
-        font-size: 14px;
-        height: auto;
-        font-weight: normal;
-        padding: 14px 0;
-        text-transform: uppercase;
-        border-color: #00415d;
-      }
+    .btn-login {
+      background-color: #37517e;
+      outline: none;
+      color: #fff;
+      font-size: 14px;
+      height: auto;
+      font-weight: normal;
+      padding: 14px 0;
+      text-transform: uppercase;
+      border-color: #00415d;
+    }
 
-      .btn-login:hover,
-      .btn-login:focus {
-        color: #fff;
-        background-color: #00415d;
-        border-color: #00415d;
-      }
+    .btn-login:hover,
+    .btn-login:focus {
+      color: #fff;
+      background-color: #00415d;
+      border-color: #00415d;
+    }
 
-      .forgot-password {
-        text-decoration: underline;
-        color: #888;
-      }
+    .forgot-password {
+      text-decoration: underline;
+      color: #888;
+    }
 
-      .forgot-password:hover,
-      .forgot-password:focus {
-        text-decoration: underline;
-        color: #666;
-      }
+    .forgot-password:hover,
+    .forgot-password:focus {
+      text-decoration: underline;
+      color: #666;
+    }
 
-      .btn-register {
-        background-color: #00415d;
-        outline: none;
-        color: #fff;
-        font-size: 14px;
-        height: auto;
-        font-weight: normal;
-        padding: 14px 0;
-        text-transform: uppercase;
-        border-color: #00415d;
-      }
+    .btn-register {
+      background-color: #00415d;
+      outline: none;
+      color: #fff;
+      font-size: 14px;
+      height: auto;
+      font-weight: normal;
+      padding: 14px 0;
+      text-transform: uppercase;
+      border-color: #00415d;
+    }
 
-      .btn-register:hover,
-      .btn-register:focus {
-        color: #fff;
-        background-color: #00415d;
-        border-color: #00415d;
-      }
-    </style>
-  </body>
+    .btn-register:hover,
+    .btn-register:focus {
+      color: #fff;
+      background-color: #00415d;
+      border-color: #00415d;
+    }
+  </style>
+</body>
+
 </html>

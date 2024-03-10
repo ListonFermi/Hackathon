@@ -3,59 +3,92 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
   homePage: async (req, res) => {
-    const userData = req.session?.currentUser;
-    res.render("userPages/home", { userData });
+    try {
+      const userData = req.session?.currentUser;
+      res.render("userPages/home", { userData });
+    } catch (error) {
+      console.log(error);
+    }
   },
   signupLoginPage: (req, res) => {
-    const userData = req.session?.currentUser;
-    if (!userData) {
-      return res.render("userPages/loginAndSignup");
-    } else {
-      res.redirect("/");
+    try {
+      const userData = req.session?.currentUser;
+      if (!userData) {
+        return res.render("userPages/loginAndSignup");
+      } else {
+        res.redirect("/");
+      }
+    } catch (error) {
+      onsole.log(error);
     }
   },
   signupPost: async (req, res) => {
-    const { username, email, phonenumber, password, gender } = req.body;
+    try {
+      const {
+        username,
+        email,
+        phonenumber,
+        jobRole,
+        company,
+        password,
+        gender,
+      } = req.body;
 
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    const newUser = new userCollection({
-      username,
-      email,
-      phonenumber,
-      password: hashedPassword,
-      gender,
-    });
+      const hashedPassword = bcrypt.hashSync(password, 10);
+      const newUser = new userCollection({
+        username,
+        email,
+        phonenumber,
+        jobRole,
+        company,
+        password: hashedPassword,
+        gender,
+      });
 
-    const existingUser = await userCollection.findOne({
-      $or: [{ username }, { email }, { phonenumber }],
-    });
+      const existingUser = await userCollection.findOne({
+        $or: [{ username }, { email }, { phonenumber }],
+      });
 
-    if (existingUser) {
-      res.json({ userExists: true });
-    } else {
-      await newUser.save();
-      req.session.currentUser = await userCollection.findOne({ username });
-      console.log(req.session.currentUser);
-      res.json({ success: true });
+      if (existingUser) {
+        res.json({ userExists: true });
+      } else {
+        await newUser.save();
+        req.session.currentUser = await userCollection.findOne({ username });
+        console.log(req.session.currentUser);
+        res.json({ success: true });
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
   loginPost: async (req, res) => {
-    const { email, password } = req.body;
-    const existingUser = await userCollection.findOne({ email });
+    try {
+      const { email, password } = req.body;
+      const existingUser = await userCollection.findOne({ email });
 
-    if (!existingUser) return res.json({ userDoesntExist: true });
+      if (!existingUser) return res.json({ userDoesntExist: true });
 
-    const comparePassword = bcrypt.compareSync(password, existingUser.password);
+      const comparePassword = bcrypt.compareSync(
+        password,
+        existingUser.password
+      );
 
-    if (comparePassword) {
-      req.session.currentUser = existingUser;
-      return res.json({ success: true });
-    } else {
-      return res.json({ invalidPassword: true });
+      if (comparePassword) {
+        req.session.currentUser = existingUser;
+        return res.json({ success: true });
+      } else {
+        return res.json({ invalidPassword: true });
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
   logoutPost: async (req, res) => {
-    req.session.currentUser= null
-    return res.json({success: true})
-  }
+    try {
+      req.session.currentUser = null;
+      return res.json({ success: true });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

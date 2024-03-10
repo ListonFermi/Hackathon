@@ -5,6 +5,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   phonenumber: { type: Number , required: true },
   password: { type: String, required: true },
+  jobRole : { type: String, required: true },
+  company : { type: String, required: true },
   gender: { type: String, required: true, enum: ["female"] },
   reviewsId : [{ type: mongoose.Types.ObjectId, ref: "reviews" }],
   questionsId : [{ type: mongoose.Types.ObjectId, ref: "questions" }],
