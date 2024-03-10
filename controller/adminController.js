@@ -46,11 +46,13 @@ module.exports = {
   },
   addCompanyData: async (req, res) => {
     try {
-      const { companyName, femaleCount, maleCount } = req.body;
+      const { companyName, femaleCount, maleCount, location } = req.body;
+      console.log(req.body);
       await companyCollection.insertMany([{
         companyName,
         maleCount,
         femaleCount,
+        location
       }]);
       res.status(200).json({success: true})
     } catch (error) {

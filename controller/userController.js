@@ -8,7 +8,8 @@ module.exports = {
     try {
       const userData = req.session?.currentUser;
       const companiesData = await companyCollection.find();
-      res.render("userPages/home", { userData, companiesData });
+      const reviewsData= await reviewCollection.find()
+      res.render("userPages/home", { userData, companiesData, reviewsData });
     } catch (error) {
       console.log(error);
     }

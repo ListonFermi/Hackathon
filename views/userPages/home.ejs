@@ -1,81 +1,87 @@
 <%- include("partials/header") %>
 
-<!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex align-items-center">
-  <div class="container">
-    <div class="row">
-      <div
-        class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        <h1>
-          Know about gender diversity and other stuffs before joining a company!
-        </h1>
-        <h2>
-          Here you have your women peers who are looking for a better place to
-          work
-        </h2>
-      </div>
-      <div
-        class="col-lg-6 order-1 order-lg-2 hero-img"
-        data-aos="zoom-in"
-        data-aos-delay="200"
-      >
-        <img src="/assets/img/hero-img.png" class="img-fluid animated" alt="" />
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End Hero -->
-
-<!-- ======= Company List Section ======= -->
-<!-- Newly added from https://bbbootstrap.com/snippets/hotel-listing-template-ratings-font-awesome-icons-51685099 -->
-<div class="container d-flex justify-content-center" style="margin-top: 100px">
-  <div class="row">
-
-    <% companiesData.forEach( (companyData, index) => { %>
-
-    <a href="/companydetails/<%= companyData._id %>" class="col-md-4">
-      <div>
-        <div class="card">
-          <!-- <div>
-            <img src="<%= companyData.logo %>" class="img-responsive image" />
-          </div> -->
-          <p class="rating"><%= companyData.femaleCount %></p>
-          <div class="card-body">
-            <h5 class="card-title"><%= companyData.companyName %></h5>
-
-            <div style="visibility: hidden;">
-            <p class="card-text">
-              <i class="fa fa-map-marker marker"></i> Singla street, New Delhi,
-              110034
-            </p></div>
-
-            <p class="card-text">
-              <i class="fa fa-map-marker marker"></i> India <br>
-              <i class="fa fa-map-marker marker"></i> Worldwide
-            </p>
-
-            <p class="card-text">
-              <i class="fa fa-star star-rating"></i>
-              <i class="fa fa-star star-rating"></i>
-              <i class="fa fa-star star-rating"></i>
-              <i class="fa fa-star star-rating"></i>
-            </p>
-          </div>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+          data-aos="fade-up" data-aos-delay="200">
+          <h1>
+            Know about gender diversity and reviews from fellow women before joining a company!
+          </h1>
+          <h2>
+            Here you have your women peers who are looking for a better place to
+            work
+          </h2>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="/assets/img/hero-img.png" class="img-fluid animated" alt="" />
         </div>
       </div>
-    </a>
+    </div>
+  </section>
+  <!-- End Hero -->
 
-    <% }) %>
-    
+  <!-- ======= Company List Section ======= -->
+  <!-- Newly added from https://bbbootstrap.com/snippets/hotel-listing-template-ratings-font-awesome-icons-51685099 -->
+  <div class="container d-flex justify-content-center" style="margin-top: 100px">
+    <div class="row">
+
+      <% companiesData.forEach( (companyData, index)=> { %>
+
+        <a href="/companydetails/<%= companyData._id %>" class="col-md-4">
+          <div style="padding: 10%;">
+            <div class="card">
+              <!-- <div>
+              <img src="<%= companyData.logo %>" class="img-responsive image" />
+              </div> -->
+              <p class="rating">
+                <%= companyData.femaleCount %>
+              </p>
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= companyData.companyName %>
+                </h5>
+
+                <div style="visibility: hidden;">
+                  <p class="card-text">
+                    <i class="fa fa-map-marker marker"></i> Singla street, New Delhi,
+                    110034
+                  </p>
+                </div>
+                <% if ( companyData.location==="India" ){ %>
+                  <p class="card-text">
+                  <div style="visibility: hidden;"><i class="fa fa-map-marker marker"></i> Worldwide </div>
+                  <i class="fa fa-map-marker marker"></i> India <br>
+
+                  </p>
+                  <% }else{ %>
+                    <p class="card-text">
+                    <div style="visibility: hidden;"><i class="fa fa-map-marker marker"></i> Worldwide </div>
+                    <i class="fa fa-map-marker marker"></i> Worldwide
+                    </p>
+                    <% }%>
+
+
+                      <div>
+                        <i class="fa fa-star star-rating"></i>
+                        <i class="fa fa-star star-rating"></i>
+                        <i class="fa fa-star star-rating"></i>
+                        <i class="fa fa-star star-rating"></i>
+                      </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <% }) %>
+
+    </div>
   </div>
-</div>
-<br><br>  <br><br>
-<!-- End Company List Section -->
+  <br><br> <br><br>
+  <!-- End Company List Section -->
 
-<!-- ======= Footer ======= -->
+  <!-- ======= Footer ======= -->
 
 
 <%- include("partials/footer") %>

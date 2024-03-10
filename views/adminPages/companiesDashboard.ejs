@@ -83,7 +83,7 @@
                     <td><%= companyData.companyName %></td>
                     <td><%= companyData.femaleCount %></td>
                     <td><%= companyData.maleCount %></td>
-                    <td><%= companyData.maleCount %></td>
+                    <td><%= companyData.location %></td>
                     <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal">
                             <i class="fas fa-edit"></i>
                         </button></td>
@@ -121,7 +121,8 @@
                         let formData = {
                             companyName: form.companyName.value,
                             femaleCount: form.femaleCount.value,
-                            maleCount: form.maleCount.value,                          
+                            maleCount: form.maleCount.value,    
+                            location: form.location.value,                       
                         }
 
                         let response = await fetch('/admin/companiesDashboard/add', {
