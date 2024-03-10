@@ -1,3 +1,4 @@
+const reviewCollection = require("../model/reviewsModel");
 const userCollection = require("../model/userModel");
 const bcrypt = require("bcryptjs");
 
@@ -91,12 +92,21 @@ module.exports = {
       console.log(error);
     }
   },
-  companyDetailsPage:(req,res)=>{
+  companyDetailsPage: (req, res) => {
     try {
       const userData = req.session?.currentUser;
-      res.render("userPages/companyDetails",{userData})
+      res.render("userPages/companyDetails", { userData });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  },
+  addReview: async (req, res) => {
+    try {
+      const {} = req.body;
+      const review = await new reviewCollection({});
+      review.save();
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
