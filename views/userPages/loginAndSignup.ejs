@@ -10,7 +10,11 @@
       id="bootstrap-css"
     />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 
   <body>
@@ -40,10 +44,16 @@
                     style="display: block"
                   >
                     <div class="form-group">
-                      <inputheight: 100vh; display: flex; justify-content:
-                      center; align-self: center; type="text" name="email"
-                      id="email" tabindex="1" class="form-control"
-                      placeholder="Email" value="" required />
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        tabindex="1"
+                        class="form-control"
+                        placeholder="Email"
+                        value=""
+                        required
+                      />
                     </div>
                     <div class="form-group">
                       <input
@@ -72,13 +82,7 @@
                       </div>
                     </div>
                   </form>
-                  <form
-                    id="register-form"
-                    action="/signup"
-                    method="POST"
-                    role="form"
-                    style="display: none"
-                  >
+                  <form id="register-form" style="display: none">
                     <div class="form-group">
                       <input
                         type="text"
@@ -134,19 +138,17 @@
                       />
                     </div>
                     <div class="form-group">
-                      <label for="gender">Gender:</label>
+                      <label for="gender">Gender(Only Queens):</label>
                       <select
                         name="gender"
                         id="gender"
                         class="form-control"
                         required
+                        disabled
                       >
-                        <option value="male">Male</option>
                         <option value="female">Female</option>
-                        <option value="other">Other</option>
                       </select>
                     </div>
-
                     <div class="form-group">
                       <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
@@ -188,6 +190,49 @@
       });
     </script>
 
+    <script>
+      $().ready(function () {
+        // validate signup form on keyup and submit
+        $("#register-form").validate({
+          submitHandler: async function (form, event) {
+            event.preventDefault();
+
+            let formData = {
+              username: form.username.value,
+              email: form.email.value,
+              phonenumber: form.phonenumber.value,
+              password: form.password.value,
+              gender: "female",
+            };
+            console.log(formData);
+
+            let response = await fetch("/signup", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(formData),
+            });
+            let result = await response.json();
+            console.log(result);
+            if (result.success) {
+              console.log("heyy");
+              Swal.fire({
+                icon: "success",
+                title: "Welcome Queen!",
+                showConfirmButton: false,
+                timer: 3500,
+              }).then(() => (window.location.href = "/"));
+            } else if (result.userExists) {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "User already exists",
+              }).then();
+            }
+          },
+        });
+      });
+    </script>
+
     <style>
       body {
         background-color: #37517e;
@@ -197,6 +242,7 @@
         justify-content: center;
         align-items: center;
       }
+
       .panel-login {
         border-color: #ccc;
         -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
