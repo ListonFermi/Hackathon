@@ -70,7 +70,7 @@
                   <a href="#"
                     ><img
                       alt="Generic placeholder image"
-                      src="http://bootdey.com/img/Content/avatar/avatar1.png"
+                      src="https://img.freepik.com/premium-vector/woman-profile-cartoon_18591-58480.jpg"
                       class="mr-3 rounded-pill"
                   /></a>
                   <div class="media-body">
@@ -207,18 +207,18 @@
     let data = await fetch("/chartdata/<%= company._id %>");
     let json = await data.json();
 
-    const label = json.data.map((item) => item._id);
+    const label = json.data.map((item) => item._id+"⭐");
     const count = json.data.map((item) => item.count);
 
     const bar = document.getElementById("bar");
     const pie = document.getElementById("pie");
 
     let paymentLabel = [];
-
+    // ["5⭐","4⭐","3⭐","2⭐","1⭐"]
     new Chart(bar, {
       type: "bar",
       data: {
-        labels: ["5⭐","4⭐","3⭐","2⭐","1⭐"],
+        labels: [...label],
         datasets: [
           {
             label: "# of ratings",
