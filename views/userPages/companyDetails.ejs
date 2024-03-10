@@ -41,96 +41,20 @@
             class="bg-white rounded shadow-sm p-4 mb-4 clearfix graph-star-rating"
           >
             <h5 class="mb-0 mb-4">Ratings and Reviews</h5>
-            <div class="graph-star-rating-header">
-              <div class="star-rating">
-                <a href="#"><i class="icofont-ui-rating active"></i></a>
-                <a href="#"><i class="icofont-ui-rating active"></i></a>
-                <a href="#"><i class="icofont-ui-rating active"></i></a>
-                <a href="#"><i class="icofont-ui-rating active"></i></a>
-                <a href="#"><i class="icofont-ui-rating"></i></a>
-                <b class="text-black ml-2">334</b>
+            <div class="charts col-lg-7">
+              <div class="chart">
+                <canvas id="bar" class=""></canvas>
               </div>
-              <p class="text-black mb-4 mt-2">Rated 3.5 out of 5</p>
-            </div>
-            <div class="graph-star-rating-body">
-              <div class="rating-list">
-                <div class="rating-list-left text-black">5 Star</div>
-                <div class="rating-list-center">
-                  <div class="progress">
-                    <div
-                      style="width: 56%"
-                      aria-valuemax="5"
-                      aria-valuemin="0"
-                      aria-valuenow="5"
-                      role="progressbar"
-                      class="progress-bar bg-primary"
-                    >
-                      <span class="sr-only">80% Complete (danger)</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="rating-list-right text-black">56%</div>
-              </div>
-              <div class="rating-list">
-                <div class="rating-list-left text-black">4 Star</div>
-                <div class="rating-list-center">
-                  <div class="progress">
-                    <div
-                      style="width: 23%"
-                      aria-valuemax="5"
-                      aria-valuemin="0"
-                      aria-valuenow="5"
-                      role="progressbar"
-                      class="progress-bar bg-primary"
-                    >
-                      <span class="sr-only">80% Complete (danger)</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="rating-list-right text-black">23%</div>
-              </div>
-              <div class="rating-list">
-                <div class="rating-list-left text-black">3 Star</div>
-                <div class="rating-list-center">
-                  <div class="progress">
-                    <div
-                      style="width: 11%"
-                      aria-valuemax="5"
-                      aria-valuemin="0"
-                      aria-valuenow="5"
-                      role="progressbar"
-                      class="progress-bar bg-primary"
-                    >
-                      <span class="sr-only">80% Complete (danger)</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="rating-list-right text-black">11%</div>
-              </div>
-              <div class="rating-list">
-                <div class="rating-list-left text-black">2 Star</div>
-                <div class="rating-list-center">
-                  <div class="progress">
-                    <div
-                      style="width: 2%"
-                      aria-valuemax="5"
-                      aria-valuemin="0"
-                      aria-valuenow="5"
-                      role="progressbar"
-                      class="progress-bar bg-primary"
-                    >
-                      <span class="sr-only">80% Complete (danger)</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="rating-list-right text-black">02%</div>
+              <div class="chart">
+                <canvas id="pie" class=""></canvas>
               </div>
             </div>
-            <div class="graph-star-rating-footer text-center mt-3 mb-3">
+            
+            <!-- <div class="graph-star-rating-footer text-center mt-3 mb-3">
               <button type="button" class="btn btn-outline-primary btn-sm">
                 Rate and Review
               </button>
-            </div>
+            </div> -->
           </div>
           <div
             class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews"
@@ -229,95 +153,7 @@
               </div>
               <hr />
            <% }); %>
-            <div class="reviews-members pt-4 pb-4">
-              <div class="media">
-                <a href="#"
-                  ><img
-                    alt="Generic placeholder image"
-                    src="http://bootdey.com/img/Content/avatar/avatar6.png"
-                    class="mr-3 rounded-pill"
-                /></a>
-                <div class="media-body">
-                  <div class="reviews-members-header">
-                    <span class="star-rating float-right">
-                      <a href="#"><i class="icofont-ui-rating active"></i></a>
-                      <a href="#"><i class="icofont-ui-rating active"></i></a>
-                      <a href="#"><i class="icofont-ui-rating active"></i></a>
-                      <a href="#"><i class="icofont-ui-rating active"></i></a>
-                      <a href="#"><i class="icofont-ui-rating"></i></a>
-                    </span>
-                    <h6 class="mb-1">
-                      <a class="text-black" href="#">Gurdeep Singh</a>
-                    </h6>
-                    <p class="text-gray">Tue, 20 Mar 2020</p>
-                  </div>
-                  <div class="reviews-members-body">
-                    <p>
-                      It is a long established fact that a reader will be
-                      distracted by the readable content of a page when looking
-                      at its layout. The point of using Lorem Ipsum is that it
-                      has a more-or-less normal distribution of letters, as
-                      opposed to using 'Content here, content here', making it
-                      look like readable English.
-                    </p>
-                  </div>
-                  <div class="reviews-members-footer">
-                    <a class="total-like" href="#"
-                      ><i class="icofont-thumbs-up"></i> 88K</a
-                    >
-                    <a class="total-like" href="#"
-                      ><i class="icofont-thumbs-down"></i> 1K</a
-                    >
-                    <span class="total-like-user-main ml-2" dir="rtl">
-                      <a
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title=""
-                        href="#"
-                        data-original-title="Gurdeep Osahan"
-                        ><img
-                          alt="Generic placeholder image"
-                          src="http://bootdey.com/img/Content/avatar/avatar5.png"
-                          class="total-like-user rounded-pill"
-                      /></a>
-                      <a
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title=""
-                        href="#"
-                        data-original-title="Gurdeep Singh"
-                        ><img
-                          alt="Generic placeholder image"
-                          src="http://bootdey.com/img/Content/avatar/avatar2.png"
-                          class="total-like-user rounded-pill"
-                      /></a>
-                      <a
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title=""
-                        href="#"
-                        data-original-title="Askbootstrap"
-                        ><img
-                          alt="Generic placeholder image"
-                          src="http://bootdey.com/img/Content/avatar/avatar3.png"
-                          class="total-like-user rounded-pill"
-                      /></a>
-                      <a
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title=""
-                        href="#"
-                        data-original-title="Osahan"
-                        ><img
-                          alt="Generic placeholder image"
-                          src="http://bootdey.com/img/Content/avatar/avatar4.png"
-                          class="total-like-user rounded-pill"
-                      /></a>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+           
             <hr />
             <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#"
               >See All Reviews</a
@@ -365,5 +201,61 @@
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    let data = await fetch("/chartdata");
+    let json = await data.json();
+
+    const label = json.data.map((item) => item._id);
+    const count = json.data.map((item) => item.count);
+
+    const bar = document.getElementById("bar");
+    const pie = document.getElementById("pie");
+
+    let paymentLabel = [];
+
+    new Chart(bar, {
+      type: "bar",
+      data: {
+        labels: ["5⭐","4⭐","3⭐","2⭐","1⭐"],
+        datasets: [
+          {
+            label: "# of ratings",
+            data: [...count],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+    // new Chart(pie, {
+    //   type: "pie",
+    //   data: {
+    //     labels: [...label],
+    //     datasets: [
+    //       {
+    //         label: "# of payment",
+    //         data: [...count],
+    //         borderWidth: 1,
+    //       },
+    //     ],
+    //   },
+    //   options: {
+    //     scales: {
+    //       y: {
+    //         beginAtZero: true,
+    //       },
+    //     },
+    //   },
+    // });
+  });
+</script>
 
 <%- include("partials/footer") %>

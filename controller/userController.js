@@ -121,4 +121,14 @@ module.exports = {
       console.log(error);
     }
   },
+  getChartData:async(req,res)=>{
+    try{
+      const data = await reviewCollection.aggregate([
+        {$group:{_id:"$ratings",count:{$sum:1}}}
+      ])
+      res.json({data})
+    }catch(error){
+      console.log(error)
+    }
+  }
 };
