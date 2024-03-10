@@ -98,8 +98,9 @@ module.exports = {
     try {
       const id = req.params.id;
       const userData = req.session?.currentUser;
-      const company = await companyCollection.findOne({ _id: id }).populate("reviews");
-      res.render("userPages/companyDetails", { userData, company });
+      const company = await companyCollection.findOne({ _id: id });
+      const review = await reviewCollection.find({ companyId: company._id }).populate("userId");
+      res.render("userPages/companyDetails", { userData, company, review });
     } catch (error) {
       console.log(error);
     }
@@ -115,7 +116,7 @@ module.exports = {
         reviews,
       });
       await review.save();
-      res.redirect(`/companydetails/${companyId}`)
+      res.redirect(`/companydetails/${companyId}`);
     } catch (error) {
       console.log(error);
     }
