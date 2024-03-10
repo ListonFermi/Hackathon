@@ -31,9 +31,9 @@
                 <h2 class="text-center text-dark mt-5">Admin Login</h2>
                 <div class="card my-5">
 
-                    <form action="/signup" method="post" class="card-body cardbody-color p-lg-5">
+                    <form id="login" class="card-body cardbody-color p-lg-5">
                         <div class="mb-3">
-                            <input name="email" type="email" class="form-control" id="Username" placeholder="Email" required>
+                            <input name="email" type="email" class="form-control" id="email" placeholder="Email" required>
                         </div>
                         <div class="mb-3">
                             <input name="password" type="password" class="form-control" id="password"
@@ -50,5 +50,39 @@
     </div>
 
 </body>
+
+<script>
+    $().ready(function () {
+      // validate login form on keyup and submit
+      $("#login").validate({
+        submitHandler: async function (form, event) {
+          event.preventDefault();
+
+          let formData = {
+            email: form.password.value,
+            password: form.password.value,
+          };
+          console.log(formData);
+
+          let response = await fetch("/admin/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          });
+          let result = await response.json();
+
+          if(result.success){
+            ()=>window.location.href='/admin/dashboard'
+          }else{
+
+          }
+
+        },
+      });
+    });
+  </script>
+</script>
+
+
 
 </html>

@@ -86,7 +86,7 @@ module.exports = {
   logoutPost: async (req, res) => {
     try {
       req.session.currentUser = null;
-      return res.json({ success: true });
+      return res.status(200).json({ success: true });
     } catch (error) {
       console.log(error);
     }

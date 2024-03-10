@@ -6,14 +6,14 @@ const nocache = require("nocache");
 const dotenv = require("dotenv");
 const userRoutes = require("./router/userRoutes.js");
 const adminRoutes = require("./router/adminRoutes.js");
-const connectDB = require("./config/db.js")
+const connectDB = require("./config/db.js");
 const session = require("express-session");
 
 // configure env
-dotenv.config()
+dotenv.config();
 
 //Database connection
-connectDB()
+connectDB();
 
 // Creating a session
 app.use(
@@ -24,7 +24,7 @@ app.use(
   })
 );
 
-app.set("view engine","ejs")
+app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.use(morgan("dev"));
@@ -35,7 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(userRoutes);
-app.use("/admin",adminRoutes)
+app.use("/admin", adminRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
