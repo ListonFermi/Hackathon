@@ -91,4 +91,12 @@ module.exports = {
       console.log(error);
     }
   },
+  companyDetailsPage:(req,res)=>{
+    try {
+      const userData = req.session?.currentUser;
+      res.render("userPages/companyDetails",{userData})
+    } catch (error) {
+      console.log(error)
+    }
+  }
 };
