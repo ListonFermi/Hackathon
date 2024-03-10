@@ -5,8 +5,7 @@ const reviewSchema = new mongoose.Schema({
   userId: { type: mongoose.Types.ObjectId, ref: "users" },
   ratings: { type: Number, required: true, enum: [1, 2, 3, 4, 5] },
   reviews: { type: String, required: true },
-
-,
+},
 { timestamps: true }
 );
 
