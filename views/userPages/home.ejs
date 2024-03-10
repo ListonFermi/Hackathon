@@ -39,17 +39,24 @@
     <a href="/companydetails/<%= companyData._id %>" class="col-md-4">
       <div>
         <div class="card">
-          <div>
-            <script>console.log("<%= companyData.logo %>")</script>
+          <!-- <div>
             <img src="<%= companyData.logo %>" class="img-responsive image" />
-          </div>
-          <p class="rating">9.2</p>
+          </div> -->
+          <p class="rating"><%= companyData.femaleCount %></p>
           <div class="card-body">
             <h5 class="card-title"><%= companyData.companyName %></h5>
+
+            <div style="visibility: hidden;">
             <p class="card-text">
               <i class="fa fa-map-marker marker"></i> Singla street, New Delhi,
               110034
+            </p></div>
+
+            <p class="card-text">
+              <i class="fa fa-map-marker marker"></i> India <br>
+              <i class="fa fa-map-marker marker"></i> Worldwide
             </p>
+
             <p class="card-text">
               <i class="fa fa-star star-rating"></i>
               <i class="fa fa-star star-rating"></i>
