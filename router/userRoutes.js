@@ -8,7 +8,7 @@ router.get("/signuplogin", userController.signupLoginPage);
 router.post("/signuplogin/signup", userController.signupPost);
 router.post("/signuplogin/login", userController.loginPost);
 router.post("/signuplogin/logout", userController.logoutPost);
-router.get("/companydetails", userController.companyDetailsPage);
+router.get("/companydetails/:id", userController.companyDetailsPage);
 router.post("/review",isLogin,userController.addReview)
 
 module.exports = router;

@@ -1,5 +1,5 @@
 <%- include("partials/header") %>
-
+<% console.log(company) %>
 <link
   rel="stylesheet"
   href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css"
@@ -340,13 +340,23 @@
                 <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
               </span>
             </div>
-            <form>
+            <form action="/review" method="post" id="review">
               <div class="form-group">
-                <label>Your Comment</label>
-                <textarea class="form-control"></textarea>
+                <select name="ratings" class="form-select">
+                  <option value="5">5⭐</option>
+                  <option value="4">4⭐</option>
+                  <option value="3">3⭐</option>
+                  <option value="2">2⭐</option>
+                  <option value="1">1⭐</option>
+                </select>
               </div>
               <div class="form-group">
-                <button class="btn btn-primary btn-sm" type="button">
+                <input type="text" class="hidden" name="companyId" style="display: none;" value="<%= company._id %>">
+                <label>Your Comment</label>
+                <textarea class="form-control" id="comment" name="reviews"></textarea>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary btn-sm" type="submit">
                   Submit Comment
                 </button>
               </div>
@@ -357,5 +367,48 @@
     </div>
   </div>
 </div>
+<!-- <script>
+  $().ready(function () {
+    // validate login form on keyup and submit
+    $("#review").validate({
+      submitHandler: async function (form, event) {
+        event.preventDefault();
+
+        let formData = {
+          comment: form.emailLogin.value,
+         
+        };
+        
+        let response = await fetch("/signuplogin/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+        let result = await response.json();
+
+        if (result.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Welcome back Queen!",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => (window.location.href = "/"));
+        } else if (result.userDoesntExist) {
+          Swal.fire({
+            icon: "error",
+            title: "User doesn't exist",
+            text: "Try creating a new account :)",
+          }).then();
+        } else if (result.invalidPassword) {
+          Swal.fire({
+            icon: "error",
+            title: "Invalid credentials",
+            text: "Try entering correct credentials",
+          }).then();
+        }
+      },
+    });
+  });
+</script> -->
 
 <%- include("partials/footer") %>

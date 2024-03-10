@@ -7,7 +7,7 @@ module.exports = {
   homePage: async (req, res) => {
     try {
       const userData = req.session?.currentUser;
-      const companiesData= await companyCollection.find()
+      const companiesData = await companyCollection.find();
       res.render("userPages/home", { userData, companiesData });
     } catch (error) {
       console.log(error);
@@ -94,19 +94,28 @@ module.exports = {
       console.log(error);
     }
   },
-  companyDetailsPage: (req, res) => {
+  companyDetailsPage: async (req, res) => {
     try {
+      const id = req.params.id;
       const userData = req.session?.currentUser;
-      res.render("userPages/companyDetails", { userData });
+      const company = await companyCollection.findOne({ _id: id }).populate("reviews");
+      res.render("userPages/companyDetails", { userData, company });
     } catch (error) {
       console.log(error);
     }
   },
   addReview: async (req, res) => {
     try {
-      const {} = req.body;
-      const review = await new reviewCollection({});
-      review.save();
+      const userId = req.session.currentUser;
+      const { companyId, ratings, reviews } = req.body;
+      const review = new reviewCollection({
+        companyId,
+        userId,
+        ratings,
+        reviews,
+      });
+      await review.save();
+      res.redirect(`/companydetails/${companyId}`)
     } catch (error) {
       console.log(error);
     }
