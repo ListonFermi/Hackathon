@@ -36,18 +36,12 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-12">
-                  <form
-                    id="login-form"
-                    action="/login"
-                    method="POST"
-                    role="form"
-                    style="display: block"
-                  >
+                  <form id="login-form" style="display: block">
                     <div class="form-group">
                       <input
                         type="email"
-                        name="email"
-                        id="email"
+                        name="emailLogin"
+                        id="emailLogin"
                         tabindex="1"
                         class="form-control"
                         placeholder="Email"
@@ -58,8 +52,8 @@
                     <div class="form-group">
                       <input
                         type="password"
-                        name="password"
-                        id="password"
+                        name="passwordLogin"
+                        id="passwordLogin"
                         tabindex="2"
                         class="form-control"
                         placeholder="Password"
@@ -190,6 +184,7 @@
       });
     </script>
 
+    <!-- signup form validation -->
     <script>
       $().ready(function () {
         // validate signup form on keyup and submit
@@ -204,15 +199,14 @@
               password: form.password.value,
               gender: "female",
             };
-            console.log(formData);
 
-            let response = await fetch("/signup", {
+            let response = await fetch("/signuplogin/signup", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(formData),
             });
             let result = await response.json();
-            console.log(result);
+
             if (result.success) {
               console.log("heyy");
               Swal.fire({
@@ -226,6 +220,52 @@
                 icon: "error",
                 title: "Oops...",
                 text: "User already exists",
+              }).then();
+            }
+          },
+        });
+      });
+    </script>
+
+    <!-- login form validation -->
+    <script>
+      $().ready(function () {
+        // validate login form on keyup and submit
+        $("#login-form").validate({
+          submitHandler: async function (form, event) {
+            event.preventDefault();
+
+            let formData = {
+              email: form.emailLogin.value,
+              password: form.passwordLogin.value,
+            };
+            console.log(formData);
+
+            let response = await fetch("/signuplogin/login", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(formData),
+            });
+            let result = await response.json();
+
+            if (result.success) {
+              Swal.fire({
+                icon: "success",
+                title: "Welcome back Queen!",
+                showConfirmButton: false,
+                timer: 2000,
+              }).then(() => (window.location.href = "/"));
+            } else if (result.userDoesntExist) {
+              Swal.fire({
+                icon: "error",
+                title: "User doesn't exist",
+                text: "Try creating a new account :)",
+              }).then();
+            } else if (result.invalidPassword) {
+              Swal.fire({
+                icon: "error",
+                title: "Invalid credentials",
+                text: "Try entering correct credentials",
               }).then();
             }
           },

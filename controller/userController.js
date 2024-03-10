@@ -3,10 +3,16 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
   homePage: async (req, res) => {
-    res.render("userPages/home");
+    const userData = req.session?.currentUser;
+    res.render("userPages/home", { userData });
   },
   signupLoginPage: (req, res) => {
-    res.render("userPages/loginAndSignup");
+    const userData = req.session?.currentUser;
+    if (!userData) {
+      return res.render("userPages/loginAndSignup");
+    } else {
+      res.redirect("/");
+    }
   },
   signupPost: async (req, res) => {
     const { username, email, phonenumber, password, gender } = req.body;
@@ -33,4 +39,23 @@ module.exports = {
       res.json({ success: true });
     }
   },
+  loginPost: async (req, res) => {
+    const { email, password } = req.body;
+    const existingUser = await userCollection.findOne({ email });
+
+    if (!existingUser) return res.json({ userDoesntExist: true });
+
+    const comparePassword = bcrypt.compareSync(password, existingUser.password);
+
+    if (comparePassword) {
+      req.session.currentUser = existingUser;
+      return res.json({ success: true });
+    } else {
+      return res.json({ invalidPassword: true });
+    }
+  },
+  logoutPost: async (req, res) => {
+    req.session.currentUser= null
+    return res.json({success: true})
+  }
 };
