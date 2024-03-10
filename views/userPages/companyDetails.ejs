@@ -204,7 +204,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", async function () {
-    let data = await fetch("/chartdata");
+    let data = await fetch("/chartdata/<%= company._id %>");
     let json = await data.json();
 
     const label = json.data.map((item) => item._id);

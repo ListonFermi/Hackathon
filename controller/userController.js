@@ -123,7 +123,10 @@ module.exports = {
   },
   getChartData:async(req,res)=>{
     try{
+      const id = req.params.id
+      const currentCompany = await companyCollection.findOne({_id: id})
       const data = await reviewCollection.aggregate([
+        {$match:{companyId:currentCompany._id}},
         {$group:{_id:"$ratings",count:{$sum:1}}}
       ])
       res.json({data})

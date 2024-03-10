@@ -10,6 +10,6 @@ router.post("/signuplogin/login", userController.loginPost);
 router.post("/signuplogin/logout", userController.logoutPost);
 router.get("/companydetails/:id", userController.companyDetailsPage);
 router.post("/review",isLogin,userController.addReview)
-router.get("/chartdata",userController.getChartData)
+router.get("/chartdata/:id",userController.getChartData)
 
 module.exports = router;
